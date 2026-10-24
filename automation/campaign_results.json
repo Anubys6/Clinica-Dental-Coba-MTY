@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Dentaltek Clínica Dental",
+    "email": "dentaltek.citas@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 2,
+    "name": "OMA Clínica Dental",
+    "email": "omaclinicadental@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Daniel Fernández - Periodoncia e Implantes",
+    "email": "periodoncista.mx@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 4,
+    "name": "Dental Clinic Monterrey",
+    "email": "dentalclinicgarzasada@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 5,
+    "name": "MAAS Dentistas",
+    "email": "maasdentistas@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 6,
+    "name": "Universo Dental Monterrey",
+    "email": "universodentalmty@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 7,
+    "name": "Cosmetic Dental Center Monterrey",
+    "email": "cosmeticdentalcenter.mty@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 8,
+    "name": "DENTALY Cumbres",
+    "email": "dentaly@hotmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 9,
+    "name": "DentaLumex Consultorio Dental",
+    "email": "dentalumex.mty@gmail.com",
+    "status": "ENVIADO"
+  },
+  {
+    "id": 10,
+    "name": "Clínica Dental Cobá",
+    "email": "clinicadentalcoba@gmail.com",
+    "status": "ENVIADO"
+  }
+]

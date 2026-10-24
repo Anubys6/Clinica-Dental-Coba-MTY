@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOMATIC • Directorio de Prospección WhatsApp MTY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090D16;
+      --card-bg: #111827;
+      --border: #1F2937;
+      --border-hover: #374151;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --whatsapp: #25D366;
+      --whatsapp-dark: #128C7E;
+      --cyan: #06B6D4;
+      --gold: #F59E0B;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px 16px 80px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 28px;
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(37,211,102,0.08) 0%, rgba(17,24,39,0.6) 100%);
+      border: 1px solid rgba(37,211,102,0.25);
+      border-radius: 16px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(37,211,102,0.15);
+      color: var(--whatsapp);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(37,211,102,0.3);
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+    }
+    p.lead {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--whatsapp);
+    }
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+      justify-content: center;
+    }
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--whatsapp);
+      color: #000;
+      border-color: var(--whatsapp);
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .clinic-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .clinic-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--whatsapp);
+      box-shadow: 0 10px 25px rgba(37,211,102,0.1);
+    }
+    .card-top {
+      margin-bottom: 16px;
+    }
+    .clinic-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(6,182,212,0.12);
+      color: var(--cyan);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .clinic-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 4px;
+    }
+    .clinic-loc {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .pitch-preview {
+      background: #0B111E;
+      border: 1px solid #1E293B;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.4;
+      font-family: monospace;
+      margin-bottom: 14px;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .btn-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #25D366;
+      color: #000;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-wa:hover {
+      background: #20BD5A;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+    }
+    .sub-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .btn-sub {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #1F2937;
+      color: #D1D5DB;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid #374151;
+      transition: all 0.2s;
+    }
+    .btn-sub:hover {
+      background: #374151;
+      color: #FFF;
+    }
+    .copy-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10B981;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    .copy-toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Panel de Prospección Directa • Monterrey</div>
+      <h1>Lanza Tu Mensaje a Clínicas Dentales en 1 Clic</h1>
+      <p class="lead">Toca cualquier botón de WhatsApp para abrir la conversación directa con el mensaje persuasivo precargado. Incluye la demo en vivo y el portal de AUTOMATIC.</p>
+      
+      <div class="stats-bar">
+        <div class="stat-card">
+          <div class="stat-num">20</div>
+          <div class="stat-label">Clínicas Monterrey Metro</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1 Clic</div>
+          <div class="stat-label">Apertura en WhatsApp Web / App</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">$0 Costo</div>
+          <div class="stat-label">Prospección Directa Orgánica</div>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterZone('all', this)">Todas (20)</button>
+        <button class="tab-btn" onclick="filterZone('san-pedro', this)">San Pedro & Valle</button>
+        <button class="tab-btn" onclick="filterZone('san-jeronimo', this)">San Jerónimo & Cumbres</button>
+        <button class="tab-btn" onclick="filterZone('centro', this)">Monterrey Centro & Contry</button>
+        <button class="tab-btn" onclick="filterZone('nicolas-guadalupe', this)">San Nicolás & Guadalupe</button>
+      </div>
+    </header>
+
+    <div class="grid" id="clinicsGrid"></div>
+  </div>
+
+  <div class="copy-toast" id="toast">¡Mensaje copiado al portapapeles!</div>
+
+  <script>
+    const DEMO_URL = "https://dec-convertible-bin-looks.trycloudflare.com/clinica-coba/";
+    const AGENCY_URL = "https://dec-convertible-bin-looks.trycloudflare.com/";
+
+    const CLINICAS = [
+      // Zona 1: San Pedro & Valle
+      {
+        id: 1,
+        name: "Dental World San Pedro",
+        zone: "san-pedro",
+        zoneLabel: "San Pedro Garza García",
+        address: "Plaza Comercial MASAI, San Pedro Garza García",
+        phone: "+52 81 3114 6697",
+        waDigits: "528131146697",
+        callPhone: "+528117813400",
+        specialty: "Implantes y Rehabilitación de Alto Nivel",
+        pitch: `Hola Dental World San Pedro, ¿cómo están? Les escribo desde Monterrey porque sé que manejan tratamientos de alta especialidad en San Pedro. Desarrollamos un Asistente de Voz con Inteligencia Artificial que atiende 24/7 en su página web, responde dudas de implantes y les emite pases digitales con QR al paciente en segundos. Es la opción más económica de Monterrey y con soporte local incluido. Les preparé esta demo en vivo para que la prueben: ${DEMO_URL} ¿Les gustaría que les comparta un audio breve de 1 minuto para ver si les sirve?`
+      },
+      {
+        id: 2,
+        name: "DENTAL San Pedro",
+        zone: "san-pedro",
+        zoneLabel: "San Pedro (Casco Urbano)",
+        address: "Priv. Corregidora Norte #324, Casco Urbano, San Pedro",
+        phone: "+52 81 1186 5429",
+        waDigits: "528111865429",
+        callPhone: "+528111865429",
+        specialty: "Odontología Integral & Diagnóstico",
+        pitch: `Hola equipo de DENTAL San Pedro, qué tal. Les mando un saludo. Les armé una demostración de cómo un sistema de Voz con IA puede contestar pacientes y agendar citas en su web incluso los domingos o por la noche, entregándoles un pase con folio y QR para evitar inasistencias. Es el sistema más accesible del mercado con soporte en Monterrey. Miren la demo funcionando aquí: ${DEMO_URL} ¿Tienen 5 minutitos para que les platique cómo funciona?`
+      },
+      {
+        id: 3,
+        name: "Dra. Gabriela Chapa Arizpe",
+        zone: "san-pedro",
+        zoneLabel: "Col. Del Valle, San Pedro",
+        address: "Río Guadalquivir 112, Col. Del Valle, San Pedro",
+        phone: "+52 81 2039 4078",
+        waDigits: "528120394078",
+        callPhone: "+528120394078",
+        specialty: "Periodoncia e Implantes Dentales",
+        pitch: `Estimada Dra. Gabriela Chapa, gusto en saludarle. Veo su destacada labor en periodoncia e implantes en San Pedro. Desarrollamos para consultorios de especialidad un asistente de voz que retiene a pacientes con urgencias y dudas clínicas al instante en la web, emitiendo un pase digital personalizado. Es sumamente económico y con soporte técnico local. Puede probar la demo en vivo aquí: ${DEMO_URL} ¿Le gustaría agendar una llamada rápida de 5 minutos?`
+      },
+
+      // Zona 2: San Jerónimo & Cumbres
+      {
+        id: 4,
+        name: "Dentaltek Clínica Dental",
+        zone: "san-jeronimo",
+        zoneLabel: "Colinas de San Jerónimo",
+        address: "Blvd. Puerta del Sol 320B, San Jerónimo, Monterrey",
+        phone: "+52 81 1798 4513",
+        waDigits: "528117984513",
+        callPhone: "+528117984513",
+        specialty: "Rehabilitación, Carillas & Estética",
+        pitch: `Hola equipo de Dentaltek Monterrey, ¿cómo están? Vi su clínica en San Jerónimo y lo bien posicionados que están en estética. Les diseñé un prototipo de recepción inteligente con voz IA que atiende prospectos en su sitio web y confirma citas con pase digital QR, reduciendo pacientes que no asisten. Es la alternativa más económica de la competencia y con soporte local en Monterrey. Prueben el prototipo en vivo aquí: ${DEMO_URL} ¿Cuándo podríamos platicarlo brevemente?`
+      },
+      {
+        id: 5,
+        name: "Clínica Dental Smile Cumbres",
+        zone: "san-jeronimo",
+        zoneLabel: "Cumbres 1er Sector",
+        address: "Paseo de los Leones #1613-1, Cumbres, Monterrey",
+        phone: "+52 81 1365 1610",
+        waDigits: "528113651610",
+        callPhone: "+528113651610",
+        specialty: "Ortodoncia, Implantes y Urgencias",
+        pitch: `Hola Dental Smile Cumbres, buen día. Sabemos que sobre Leones el tráfico de pacientes que buscan ortodoncia y urgencias es altísimo. Creamos un sistema para consultorios en Monterrey con agente de voz IA 24/7 que contesta dudas de brackets y aparta citas automáticamente con pase de recepción QR. Mucho más económico que cualquier software tradicional y con soporte continuo. Miren la demo en vivo: ${DEMO_URL} ¿Les gustaría que les muestre cómo adaptarlo a su clínica?`
+      },
+      {
+        id: 6,
+        name: "DENTALY Cumbres",
+        zone: "san-jeronimo",
+        zoneLabel: "Cumbres",
+        address: "Av. Paseo de los Leones, Cumbres, Monterrey",
+        phone: "+52 81 8161 2713",
+        waDigits: "528181612713",
+        callPhone: "+528181612713",
+        specialty: "Odontología Estética y Preventiva",
+        pitch: `Hola DENTALY Cumbres, ¿cómo están? Les escribo porque hoy en día responder manualmente en WhatsApp o Instagram hace que se pierdan pacientes que preguntan tarde. Les monté una demo de Asistente de Voz con IA que atiende en su web y les entrega a sus pacientes un pase de cita formal con código QR. La mejor parte: es el más económico de Monterrey y les damos todo el soporte. Chequen la demo aquí: ${DEMO_URL} ¿Tienen unos minutos para platicar?`
+      },
+      {
+        id: 7,
+        name: "Dr. Daniel Fernández",
+        zone: "san-jeronimo",
+        zoneLabel: "Sertoma / San Jerónimo",
+        address: "Centro Profesional Delta, Calle Sertoma 105, Monterrey",
+        phone: "+52 81 1880 9351",
+        waDigits: "528118809351",
+        callPhone: "+528118809351",
+        specialty: "Especialista en Implantes y Periodoncia",
+        pitch: `Estimado Dr. Daniel Fernández, qué tal. Le contacto desde Monterrey para compartirle una herramienta que creamos para odontólogos especialistas: un recepcionista de voz con IA que califica pacientes, responde sobre implantes y agenda citas emitiendo pase digital. Cero complicaciones técnicas, el costo más competitivo del mercado y soporte directo. Pruebe el prototipo en vivo aquí: ${DEMO_URL} Quedo a su disposición si le interesa evaluarlo.`
+      },
+
+      // Zona 3: Monterrey Centro, Mitras & Contry
+      {
+        id: 8,
+        name: "Clínica Dental Cobá (Prototipo Listo)",
+        zone: "centro",
+        zoneLabel: "Centro Monterrey & Guadalupe",
+        address: "Jerónimo Treviño #1111 Pte. Centro MTY / Benito Juárez #825",
+        phone: "+52 81 1848 3941",
+        waDigits: "528118483941",
+        callPhone: "+528118483941",
+        specialty: "Brackets $1,999, Coronas Zirconia & Limpieza",
+        pitch: `Hola directores de Clínica Dental Cobá, buen día. Vimos que su página oficial anterior no está disponible y que dependen de WhatsApp. Por eso les preparamos un sitio web completo con Asistente de Voz con IA y Emisión de Pase Digital con QR para sus sucursales de Centro MTY y Guadalupe. Ya está funcionando al 100% y se los entregamos al costo más bajo de todo Monterrey con soporte. Pruébenlo ustedes mismos aquí: ${DEMO_URL} ¿Cuándo podemos transferírselos?`
+      },
+      {
+        id: 9,
+        name: "Los Dentistas Monterrey",
+        zone: "centro",
+        zoneLabel: "Centro de Monterrey (Metro Alameda)",
+        address: "Av. Cuauhtémoc esq. Aramberri, Centro, Monterrey",
+        phone: "+52 81 2385 5727",
+        waDigits: "528123855727",
+        callPhone: "+528123855727",
+        specialty: "Odontología General & Alto Volumen",
+        pitch: `Hola Los Dentistas Monterrey, gusto en saludarles. Estando en el corazón del Centro sobre Cuauhtémoc sabemos el gran volumen de personas que les preguntan diario. Desarrollamos un asistente de voz interactivo que filtra a los pacientes, les explica los tratamientos y les envía un pase digital con QR para que no falten a su cita. Es la solución más económica y con soporte en Monterrey. Miren la demo funcionando: ${DEMO_URL} ¿Les gustaría probarlo en su consultorio?`
+      },
+      {
+        id: 10,
+        name: "OMA Clínica Dental",
+        zone: "centro",
+        zoneLabel: "Mitras Centro",
+        address: "Av. Simón Bolívar 1506, Mitras Centro, Monterrey",
+        phone: "+52 81 8799 8864",
+        waDigits: "528187998864",
+        callPhone: "+528187998864",
+        specialty: "Ortodoncia y Estética Dental",
+        pitch: `Hola OMA Clínica Dental, ¿cómo están? Les escribo porque vimos su clínica sobre Simón Bolívar. Diseñamos un sistema con inteligencia artificial que habla de forma natural con los pacientes que visitan su web, resuelve dudas de precios y aparta citas automáticamente generando un pase con QR. Muy económico y con soporte local directo. Pueden probarlo aquí: ${DEMO_URL} ¿Les parecería bien tener una llamada rápida de 5 minutos?`
+      },
+      {
+        id: 11,
+        name: "MAAS Dentistas",
+        zone: "centro",
+        zoneLabel: "Contry",
+        address: "Av. Constelaciones 111, Contry, Monterrey",
+        phone: "+52 81 1360 3501",
+        waDigits: "528113603501",
+        callPhone: "+528113603501",
+        specialty: "Diseño de Sonrisa y Estética",
+        pitch: `Hola equipo de MAAS Dentistas en Contry, ¿qué tal? Vemos su excelente enfoque en diseño de sonrisa. Les comparto una herramienta que permite que sus pacientes escuchen y platiquen con una asistente de voz en su página, la cual califica su tratamiento y les expide un pase digital exclusivo para asegurar su visita. El costo es el más bajo del mercado y con soporte local en Monterrey. Vean la demo en vivo: ${DEMO_URL} ¿Cuándo podríamos platicarlo?`
+      },
+      {
+        id: 12,
+        name: "Dentistas en Monterrey (Valle del Mirador)",
+        zone: "centro",
+        zoneLabel: "Valle del Mirador / Contry",
+        address: "Río Nazas #1297, 3er Piso, Col. Valle del Mirador, Monterrey",
+        phone: "+52 81 1021 8395",
+        waDigits: "528110218395",
+        callPhone: "+528110218395",
+        specialty: "Atención Dental Personalizada",
+        pitch: `Hola Dentistas en Monterrey de Valle del Mirador, gusto en saludarles. Les presento una solución tecnológica que desarrollamos aquí en Monterrey: un sistema de voz con IA que atiende a sus pacientes 24/7 en su web y confirma citas con pase digital formal. Es la opción más accesible de la competencia y con soporte técnico incluido. Prueben la demo interactiva aquí: ${DEMO_URL} ¿Tienen 5 minutos esta semana para platicar?`
+      },
+
+      // Zona 4: San Nicolás & Guadalupe
+      {
+        id: 13,
+        name: "Dentistas San Nicolás",
+        zone: "nicolas-guadalupe",
+        zoneLabel: "Sendero, San Nicolás",
+        address: "Av. Sendero Divisorio 200, Jardines de San Nicolás",
+        phone: "+52 81 4429 8774",
+        waDigits: "528144298774",
+        callPhone: "+528144298774",
+        specialty: "Odontología Familiar e Integral",
+        pitch: `Hola equipo de Dentistas San Nicolás, buen día. Sabemos que en la zona de Sendero los pacientes buscan atención rápida. Desarrollamos un sistema para clínicas que contesta dudas con voz inteligente y agenda citas 24 horas al día con pase de recepción digital. Es la opción más económica de Monterrey y con soporte local. Miren cómo funciona la demo en vivo: ${DEMO_URL} ¿Les gustaría que les platique cómo implementarlo en su clínica?`
+      },
+      {
+        id: 14,
+        name: "All Orthodontic Clínica Dental",
+        zone: "nicolas-guadalupe",
+        zoneLabel: "Las Puentes, San Nicolás",
+        address: "Calle Cerro del Potosí 200, Las Puentes 2do Sector, San Nicolás",
+        phone: "+52 81 1239 2619",
+        waDigits: "528112392619",
+        callPhone: "+528112392619",
+        specialty: "Especialistas en Ortodoncia y Brackets",
+        pitch: `Hola All Orthodontic San Nicolás, ¿cómo están? Como especialistas en brackets, saben lo común que es que la gente pregunte presupuestos a deshoras. Creamos un asistente de voz con IA que explica sus paquetes de ortodoncia en su web y agenda la cita de valoración al instante con pase QR. El más económico del mercado y con soporte local. Chequen la demo aquí: ${DEMO_URL} ¿Cuándo podríamos coordinar una llamada rápida?`
+      },
+      {
+        id: 15,
+        name: "Dental Sys (San Nicolás)",
+        zone: "nicolas-guadalupe",
+        zoneLabel: "Hacienda Los Morales, San Nicolás",
+        address: "Pirul No. 848, Hacienda Los Morales 3er Sect., San Nicolás",
+        phone: "+52 81 2601 2091",
+        waDigits: "528126012091",
+        callPhone: "+528126012091",
+        specialty: "Odontología Preventiva y Restauradora",
+        pitch: `Hola Dental Sys San Nicolás, un saludo cordial. Les comparto una innovación desarrollada en Monterrey: un sistema de atención con voz interactiva que recibe pacientes en su web y les entrega un pase de cita digital con QR para que no olviden su cita. Muy económico y con soporte técnico continuo. Prueben el prototipo en vivo aquí: ${DEMO_URL} ¿Les interesaría verlo funcionando en su consultorio?`
+      },
+      {
+        id: 16,
+        name: "Smilessential San Nicolás",
+        zone: "nicolas-guadalupe",
+        zoneLabel: "Diego Díaz, San Nicolás",
+        address: "Diego Díaz De Berlanga 524 Local 4, San Nicolás",
+        phone: "+52 81 8175 1957",
+        waDigits: "528181751957",
+        callPhone: "+528181751957",
+        specialty: "Estética y Salud Bucal",
+        pitch: `Hola Smilessential San Nicolás, ¿qué tal? Vemos su presencia en San Nicolás y queremos mostrarles cómo pueden captar más pacientes en automático: un asistente con IA que contesta por voz en su web y asegura las citas con pase digital. Cero costos inflados de agencias extranjeras; es la opción más económica de Monterrey con soporte garantizado. Demo en vivo: ${DEMO_URL} ¿Platicamos 5 minutos?`
+      },
+      {
+        id: 17,
+        name: "dentalmedics® Guadalupe",
+        zone: "nicolas-guadalupe",
+        zoneLabel: "Pablo Livas, Guadalupe",
+        address: "Av. Pablo Livas 7240-C, Residencial Santa María, Guadalupe",
+        phone: "+52 81 2261 2377",
+        waDigits: "528122612377",
+        callPhone: "+528122612377",
+        specialty: "Clínica Dental Integral",
+        pitch: `Hola dentalmedics Guadalupe, buen día. Sobre Pablo Livas el movimiento es constante y los pacientes necesitan confirmación rápida. Desarrollamos una solución con recepcionista de voz IA que aparta citas 24/7 y genera pases de confirmación con código QR y ubicación. Es la opción más accesible de la competencia con soporte local. Miren la demo funcionando aquí: ${DEMO_URL} ¿Tienen disponibilidad para una breve charla de 5 minutos?`
+      },
+      {
+        id: 18,
+        name: "Consultorio Dental G'Melas",
+        zone: "nicolas-guadalupe",
+        zoneLabel: "Eloy Cavazos, Guadalupe",
+        address: "Av. Eloy Cavazos, Col. Lomas de San Roque, Guadalupe",
+        phone: "+52 81 1590 2054",
+        waDigits: "528115902054",
+        callPhone: "+528115902054",
+        specialty: "Odontología General y Limpiezas",
+        pitch: `Hola Consultorio Dental G'Melas en Guadalupe, un saludo. Les escribo para mostrarles un sistema práctico que creamos en Monterrey: un asistente de voz que ayuda a pacientes a agendar su cita médica desde la web con boleto digital en segundos. El más económico del mercado y con soporte local de nuestro equipo. Chequen el prototipo en vivo: ${DEMO_URL} ¿Les gustaría evaluarlo para su consultorio?`
+      },
+      {
+        id: 19,
+        name: "DentaLumex Consultorio Dental",
+        zone: "centro",
+        zoneLabel: "Centro MTY / Madero",
+        address: "Av. Francisco I. Madero 1035 Ote., Centro, Monterrey",
+        phone: "+52 81 1501 0451",
+        waDigits: "528115010451",
+        callPhone: "+528115010451",
+        specialty: "Atención Dental Inmediata y Extracciones",
+        pitch: `Hola DentaLumex en Madero Centro, gusto en saludarles. Sabemos que en el centro de Monterrey las personas buscan citas sin rodeos. Les diseñamos una demostración con recepcionista de voz con IA que atiende dudas y envía un pase con código QR a los pacientes para asegurar su llegada. La opción más económica de Monterrey con soporte incluido. Prueben la demo en vivo: ${DEMO_URL} ¿Cuándo podríamos platicarlo?`
+      },
+      {
+        id: 20,
+        name: "Universo Dental Monterrey",
+        zone: "centro",
+        zoneLabel: "Col. Central, Monterrey",
+        address: "Río Bravo #111, Col. Central, Monterrey",
+        phone: "+52 81 8371 1200",
+        waDigits: "528183711200",
+        callPhone: "+528183711200",
+        specialty: "Rehabilitación Oral y Odontopediatría",
+        pitch: `Hola Universo Dental Monterrey, ¿cómo están? Les escribo desde AUTOMATIC Monterrey. Desarrollamos un sistema de Inteligencia Artificial que habla con sus pacientes en la web y les emite un pase digital formal para que no falten a sus citas. Es el más económico de la competencia y con soporte técnico local. Les dejo la demo para que la prueben: ${DEMO_URL} ¿Tienen 5 minutos para una breve plática?`
+      }
+    ];
+
+    function renderClinics(filter = 'all') {
+      const grid = document.getElementById('clinicsGrid');
+      grid.innerHTML = '';
+
+      const list = filter === 'all' ? CLINICAS : CLINICAS.filter(c => c.zone === filter);
+
+      list.forEach(c => {
+        const waLink = `https://wa.me/${c.waDigits}?text=${encodeURIComponent(c.pitch)}`;
+        const card = document.createElement('div');
+        card.className = 'clinic-card';
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="clinic-tag">${c.zoneLabel}</span>
+            <h3 class="clinic-name">${c.id}. ${c.name}</h3>
+            <div class="clinic-loc">📍 ${c.address}</div>
+            <div style="font-size: 12px; color: #38BDF8; margin-bottom: 10px;">★ ${c.specialty}</div>
+            <div class="pitch-preview">"${c.pitch}"</div>
+          </div>
+          <div class="actions">
+            <a href="${waLink}" target="_blank" class="btn-wa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.574 1.831.846 2.808.847h.005c3.182 0 5.767-2.586 5.768-5.766 0-1.54-.599-2.988-1.688-4.077-1.09-1.088-2.536-1.688-4.087-1.688zm9.645 5.766c.002 5.342-4.346 9.69-9.689 9.69-.002 0-.005 0-.008 0-1.636 0-3.238-.415-4.66-1.2l-5.188 1.36 1.385-5.056c-.86-1.488-1.314-3.187-1.314-4.794 0-5.343 4.348-9.691 9.69-9.691 2.588 0 5.021 1.008 6.85 2.838 1.831 1.83 2.839 4.263 2.839 6.852z"/></svg>
+              Enviar Mensaje por WhatsApp
+            </a>
+            <div class="sub-actions">
+              <a href="tel:${c.callPhone}" class="btn-sub">📞 Marcar</a>
+              <button class="btn-sub" onclick="copyPitch('${c.id}')">📋 Copiar Texto</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterZone(zone, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderClinics(zone);
+    }
+
+    function copyPitch(id) {
+      const clinic = CLINICAS.find(c => c.id == id);
+      if (!clinic) return;
+      navigator.clipboard.writeText(clinic.pitch).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      });
+    }
+
+    renderClinics('all');
+  </script>
+</body>
+</html>

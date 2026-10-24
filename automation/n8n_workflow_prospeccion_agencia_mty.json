@@ -1,0 +1,93 @@
+{
+  "name": "Agencia IA Monterrey — Automatización Outbound para Contactar y Vender a Clínica Dental Cobá",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "disparar-prospeccion-mty",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1191de57-b164-4a51-a24c-752e84e70001",
+      "name": "Trigger Campaña Outbound Monterrey"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lista pre-cargada de prospectos reales en Monterrey con carencia de web / automatización\nreturn [\n  {\n    json: {\n      negocio: 'Clínica Dental Cobá',\n      ciudad: 'Monterrey Centro y Guadalupe Centro, N.L.',\n      direccion_mty: 'Jerónimo Treviño #1111 Pte., Centro, Monterrey, N.L.',\n      direccion_gpe: 'Benito Juárez #825, Local D, Centro de Guadalupe, N.L.',\n      telefono_principal: '+528118483941',\n      telefono_fijo_mty: '+528183746726',\n      telefono_gpe: '+528180701778',\n      instagram: '@clinicadentalcoba',\n      dominio_caido: 'clinicadentalcoba.com (DNS NXDOMAIN - Caído)',\n      dolor_detectado: 'Su dominio clinicadentalcoba.com está caído y tienen saturación de citas en días de promoción de brackets ($1,999 MXN) y zirconia en sus 2 sucursales.',\n      demo_url: 'http://localhost:8090'\n    }\n  },\n  {\n    json: {\n      negocio: 'DENTALY Monterrey',\n      ciudad: 'Zona Las Torres, Monterrey, N.L.',\n      direccion_mty: 'Av. Lázaro Cárdenas #3932, Col. Las Torres, MTY, C.P. 64930',\n      telefono_principal: '+528181612713',\n      instagram: '@dentaly_dentistas',\n      dominio_caido: 'No cuentan con sitio web oficial (solo Facebook/Instagram)',\n      dolor_detectado: 'Atienden citas únicamente por teléfono manual y redes sociales sin embudo web ni agente de confirmación.',\n      demo_url: 'http://localhost:8090'\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "2291de57-b164-4a51-a24c-752e84e70002",
+      "name": "Prospectos Detectados en Monterrey"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer TU_API_KEY_DE_RETELL_AI"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from_number\": \"TU_NUMERO_ZADARMA_O_TWILIO_MTY\",\n  \"to_number\": \"{{ $json.telefono_principal }}\",\n  \"call_type\": \"phone_call\",\n  \"retell_llm_dynamic_variables\": {\n    \"negocio\": \"{{ $json.negocio }}\",\n    \"dolor_detectado\": \"{{ $json.dominio_caido }}\",\n    \"sucursales\": \"{{ $json.ciudad }}\"\n  },\n  \"override_agent_id\": \"agent_prospeccion_b2b_monterrey\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        520,
+        0
+      ],
+      "id": "3391de57-b164-4a51-a24c-752e84e70003",
+      "name": "Llamada B2B Outbound o Envío de Demo por WhatsApp"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Trigger Campaña Outbound Monterrey": {
+      "main": [
+        [
+          {
+            "node": "Prospectos Detectados en Monterrey",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prospectos Detectados en Monterrey": {
+      "main": [
+        [
+          {
+            "node": "Llamada B2B Outbound o Envío de Demo por WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

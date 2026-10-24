@@ -1,0 +1,9 @@
+{
+  "doc-1": {
+    "status": "LIQUIDADO",
+    "liquidated_at": "2026-10-19 22:46:17",
+    "payment_method": "Transferencia SPEI",
+    "notes": "Liquidacion formal autorizada",
+    "folio": "LIQ-COBA-202610-001"
+  }
+}

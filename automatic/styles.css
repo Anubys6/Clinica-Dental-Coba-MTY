@@ -1,0 +1,651 @@
+/* ==========================================================================
+   AUTOMATIC — INFRAESTRUCTURA DE DOMINIO COMERCIAL & AGENTES DE IA (MONTERREY)
+   Estética: Obsidian Defense-Tech / Molten Gold (#F59E0B) & Titanium
+   ========================================================================== */
+
+:root {
+    --bg-obsidian: #030305;
+    --bg-carbon: #09090E;
+    --bg-titanium: #12121A;
+    --bg-glass: rgba(14, 14, 22, 0.82);
+
+    /* Molten Gold & Amber Scale (Autoridad y Poder Ejecutivo) */
+    --gold-300: #FCD34D;
+    --gold-400: #FBBF24;
+    --gold-500: #F59E0B;
+    --gold-600: #D97706;
+    --gold-rgb: 245, 158, 11;
+
+    /* Electric Plasma & Alert Accents */
+    --plasma-blue: #3B82F6;
+    --plasma-cyan: #06B6D4;
+    --crimson-alert: #EF4444;
+    --emerald-live: #10B981;
+
+    --text-white: #FFFFFF;
+    --text-silver: #E2E8F0;
+    --text-muted: #94A3B8;
+    --text-dim: #64748B;
+
+    --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-obsidian);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-obsidian);
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(var(--gold-rgb), 0.14) 0%, transparent 55%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+    color: var(--text-white);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   TOP TELEMETRY BAR & NAVBAR
+   ========================================================================== */
+.telemetry-bar {
+    background: #000000;
+    border-bottom: 1px solid rgba(var(--gold-rgb), 0.28);
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    z-index: 1001;
+    position: relative;
+}
+
+.telemetry-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-400);
+    font-weight: 700;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold-400);
+    box-shadow: 0 0 12px var(--gold-400);
+    animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(1.25); }
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(3, 3, 5, 0.85);
+    backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(var(--gold-rgb), 0.18);
+    padding: 16px 0;
+}
+
+.nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.brand img {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(var(--gold-rgb), 0.55);
+    box-shadow: 0 0 22px rgba(var(--gold-rgb), 0.35);
+}
+
+.brand-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: 0.14em;
+    color: #fff;
+    display: block;
+    line-height: 1.05;
+}
+
+.brand-sub {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--gold-400);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-silver);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 0.25s;
+}
+
+.nav-links a:hover {
+    color: var(--gold-400);
+}
+
+/* ==========================================================================
+   BUTTONS & CARDS
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 16px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #D97706 100%);
+    color: #030305;
+    box-shadow:
+        0 0 0 1px rgba(251, 191, 36, 0.6),
+        0 8px 30px rgba(var(--gold-rgb), 0.45);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 0 0 2px #FDE68A,
+        0 14px 42px rgba(var(--gold-rgb), 0.7);
+}
+
+.btn-titanium {
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    border: 1px solid rgba(var(--gold-rgb), 0.4);
+    backdrop-filter: blur(12px);
+}
+
+.btn-titanium:hover {
+    background: rgba(var(--gold-rgb), 0.14);
+    border-color: var(--gold-400);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 10px 18px;
+    font-size: 0.78rem;
+}
+
+.monolith-card {
+    background: linear-gradient(145deg, rgba(18, 18, 26, 0.92) 0%, rgba(7, 7, 11, 0.96) 100%);
+    border: 1px solid rgba(var(--gold-rgb), 0.22);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    transition: all 0.35s ease;
+}
+
+.monolith-card:hover {
+    border-color: rgba(var(--gold-rgb), 0.55);
+    box-shadow: 0 24px 60px rgba(var(--gold-rgb), 0.16);
+}
+
+/* ==========================================================================
+   HERO & COMMERCIAL CINEMA THEATRE
+   ========================================================================== */
+.hero {
+    padding: 64px 0 90px;
+    position: relative;
+}
+
+.hero-top {
+    text-align: center;
+    max-width: 980px;
+    margin: 0 auto 48px;
+}
+
+.authority-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+    background: rgba(var(--gold-rgb), 0.12);
+    border: 1px solid rgba(var(--gold-rgb), 0.4);
+    padding: 8px 18px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+}
+
+.hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.4vw, 4.7rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+.gold-gradient {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FDE68A 40%, #F59E0B 80%, #D97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-lead {
+    font-size: 1.22rem;
+    color: var(--text-silver);
+    max-width: 780px;
+    margin: 0 auto 32px;
+}
+
+.hero-ctas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* REPRODUCTOR DE COMERCIAL OFICIAL DE AUTOMATIC (CINEMA HUD) */
+.commercial-theatre {
+    max-width: 1120px;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    border: 2px solid rgba(var(--gold-rgb), 0.55);
+    box-shadow:
+        0 0 80px rgba(var(--gold-rgb), 0.25),
+        0 30px 80px rgba(0, 0, 0, 0.9);
+    position: relative;
+}
+
+.theatre-topbar {
+    background: rgba(8, 8, 12, 0.95);
+    border-bottom: 1px solid rgba(var(--gold-rgb), 0.25);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+}
+
+.theatre-viewport {
+    position: relative;
+    width: 100%;
+    height: 540px;
+    background: #030305;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commercial-bg-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.48;
+    filter: contrast(1.15) saturate(1.1);
+    transition: opacity 0.6s ease, transform 6s ease-out;
+    transform: scale(1.03);
+}
+
+.commercial-bg-slide.zooming {
+    transform: scale(1.12);
+}
+
+#commercial-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.commercial-hud-overlay {
+    position: relative;
+    z-index: 3;
+    max-width: 860px;
+    padding: 36px;
+    text-align: center;
+    background: radial-gradient(circle, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 75%, transparent 100%);
+    border-radius: 24px;
+}
+
+.scene-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--gold-400);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.commercial-kinetic-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.8vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.12;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    text-shadow: 0 8px 32px rgba(0, 0, 0, 0.95);
+}
+
+.commercial-subtitle-box {
+    background: rgba(3, 3, 5, 0.88);
+    border: 1px solid rgba(var(--gold-rgb), 0.45);
+    border-radius: 12px;
+    padding: 14px 22px;
+    font-size: 1.08rem;
+    color: #F8FAFC;
+    font-weight: 500;
+    display: inline-block;
+    max-width: 760px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+}
+
+.theatre-controls {
+    background: rgba(8, 8, 12, 0.96);
+    border-top: 1px solid rgba(var(--gold-rgb), 0.25);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.progress-track {
+    flex: 1;
+    min-width: 180px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 99px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-500), #FDE68A);
+    box-shadow: 0 0 12px var(--gold-400);
+    transition: width 0.25s linear;
+}
+
+/* ==========================================================================
+   SECTIONS & CALCULADORA DE FUGA DE CAPITAL
+   ========================================================================== */
+.section {
+    padding: 100px 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.8vw, 3.1rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+}
+
+.roi-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 36px;
+    align-items: stretch;
+}
+
+.slider-group {
+    margin-bottom: 24px;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.slider-val {
+    font-family: var(--font-mono);
+    color: var(--gold-400);
+    font-size: 1.1rem;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--gold-500);
+    height: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 99px;
+    cursor: pointer;
+}
+
+.roi-result-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: radial-gradient(circle at top right, rgba(239, 68, 68, 0.15), rgba(9, 9, 14, 0.95));
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.leak-amount {
+    font-family: var(--font-mono);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: var(--crimson-alert);
+    line-height: 1.1;
+    margin: 8px 0 18px;
+}
+
+.recovered-amount {
+    font-family: var(--font-mono);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--emerald-live);
+}
+
+/* ==========================================================================
+   ARSENAL 4 PILARES & PORTAFOLIO DE CASOS EN VIVO
+   ========================================================================== */
+.arsenal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.arsenal-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--gold-400);
+    border: 1px solid rgba(var(--gold-rgb), 0.35);
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.arsenal-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.22rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.arsenal-card p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+}
+
+.case-preview-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid rgba(var(--gold-rgb), 0.3);
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   TERMINAL DE AGENTE DE VOZ B2B (VIKTOR — DIRECTOR COMERCIAL IA)
+   ========================================================================== */
+.b2b-terminal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    background: rgba(3, 3, 5, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--gold-400);
+    box-shadow: 0 0 0 3px rgba(var(--gold-rgb), 0.22);
+}
+
+.viktor-console {
+    background: #050508;
+    border: 1px solid rgba(var(--gold-rgb), 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    font-family: var(--font-mono);
+}
+
+.viktor-log {
+    height: 230px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 0.86rem;
+    margin: 16px 0;
+}
+
+.viktor-msg {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.viktor-msg.ai { color: var(--gold-300); }
+.viktor-msg.user { color: #38BDF8; }
+
+.footer {
+    border-top: 1px solid rgba(var(--gold-rgb), 0.2);
+    padding: 60px 0 40px;
+    background: #020204;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+}
+
+@media (max-width: 1024px) {
+    .arsenal-grid { grid-template-columns: repeat(2, 1fr); }
+    .roi-grid, .cases-grid, .b2b-terminal-grid { grid-template-columns: 1fr; }
+    .theatre-viewport { height: 460px; }
+}
+
+@media (max-width: 767px) {
+    .nav-links { display: none; }
+    .arsenal-grid { grid-template-columns: 1fr; }
+    .theatre-viewport { height: 420px; }
+    .commercial-hud-overlay { padding: 18px; }
+}

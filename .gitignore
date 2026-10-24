@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+tunnel.log
+tunnel_url.txt
+automation/email_config.json
+automation/tts_cache/

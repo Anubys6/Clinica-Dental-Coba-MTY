@@ -1,0 +1,66 @@
+[
+  {
+    "incident_id": "SIM-XSS-f8f351",
+    "type": "SIMULATED_XSS_ATTACK",
+    "client_ip": "127.0.0.1",
+    "path": "/index.html?ref=<script>alert('Stealing session')</script>",
+    "action": "BLOCKED_HTTP_403",
+    "timestamp": "2026-10-24T01:16:08.558910"
+  },
+  {
+    "incident_id": "SIM-SQLI-6c036a",
+    "type": "SIMULATED_SQL_INJECTION",
+    "client_ip": "127.0.0.1",
+    "path": "/api/leads?search=' OR '1'='1' UNION SELECT credit_card FROM payments--",
+    "action": "BLOCKED_HTTP_403",
+    "timestamp": "2026-10-24T01:16:03.888473"
+  },
+  {
+    "incident_id": "SIM-SQLI-9af4bb",
+    "type": "SIMULATED_SQL_INJECTION",
+    "client_ip": "127.0.0.1",
+    "path": "/api/leads?search=' OR '1'='1' UNION SELECT credit_card FROM payments--",
+    "action": "BLOCKED_HTTP_403",
+    "timestamp": "2026-10-24T01:15:58.563941"
+  },
+  {
+    "incident_id": "SEC-SQLI-afcafd43",
+    "type": "SQL_INJECTION_URL",
+    "client_ip": "127.0.0.1",
+    "path": "/api/leads?search=%27%20OR%20%271%27=%271%27--",
+    "pattern": "(\\%27)|(\\')|(\\-\\-)|(\\%23)|(#)",
+    "timestamp": "2026-10-24T00:46:50.332832"
+  },
+  {
+    "incident_id": "SIM-SQLI-a850a1",
+    "type": "SIMULATED_SQL_INJECTION",
+    "client_ip": "127.0.0.1",
+    "path": "/api/leads?search=' OR '1'='1' UNION SELECT credit_card FROM payments--",
+    "action": "BLOCKED_HTTP_403",
+    "timestamp": "2026-10-24T00:46:48.293845"
+  },
+  {
+    "incident_id": "SEC-LFI-adb87dfc",
+    "type": "PATH_TRAVERSAL",
+    "client_ip": "127.0.0.1",
+    "path": "/../../etc/passwd",
+    "pattern": "(\\.\\./|\\.\\.\\\\)",
+    "timestamp": "2026-10-24T00:42:33.373049"
+  },
+  {
+    "incident_id": "SEC-XSS-ef39e7ee",
+    "type": "XSS_ATTACK_URL",
+    "client_ip": "127.0.0.1",
+    "path": "/search?q=<script>alert(1)</script>",
+    "pattern": "<\\s*script[^>]*>",
+    "timestamp": "2026-10-24T00:42:33.360016"
+  },
+  {
+    "incident_id": "SEC-SQLI-feece9bd",
+    "type": "SQL_INJECTION_URL",
+    "client_ip": "127.0.0.1",
+    "path": "/api/leads?id=1%27%20OR%20%271%27=%271",
+    "pattern": "(\\%27)|(\\')|(\\-\\-)|(\\%23)|(#)",
+    "timestamp": "2026-10-24T00:42:33.358504"
+  }
+]

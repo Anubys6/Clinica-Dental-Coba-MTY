@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOMATIC | Ingeniería de Automatización &amp; Dominio Comercial con IA — Monterrey</title>
+    <meta name="description" content="AUTOMATIC: Agencia de Ingeniería de Automatización, Ecosistemas Web de Alta Conversión y Agentes de Voz con Inteligencia Artificial en Monterrey, N.L. Automatiza o desaparece.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Barra Superior de Telemetría Ejecutiva -->
+    <div class="telemetry-bar">
+        <div class="telemetry-status">
+            <span class="pulse-dot"></span>
+            AUTOMATIC NEURAL CORE v4.2 // OPERANDO EN MONTERREY, N.L.
+        </div>
+        <div>
+            LATENCIA DE LLAMADA IA: <strong style="color:#10B981;">7.4 SEGUNDOS</strong> &nbsp;|&nbsp; DISPONIBILIDAD: <strong style="color:#FBBF24;">24/7/365</strong>
+        </div>
+    </div>
+
+    <!-- Navbar Imponente -->
+    <header class="navbar">
+        <div class="container nav-wrap">
+            <a href="#" class="brand">
+                <img src="images/logo.png" alt="AUTOMATIC Logo">
+                <div>
+                    <span class="brand-title">AUTOMATIC</span>
+                    <span class="brand-sub">AI &amp; Automation Systems &bull; MTY</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#comercial">Comercial Oficial</a></li>
+                <li><a href="#fuga-capital">Fuga de Capital</a></li>
+                <li><a href="#arsenal">Arsenal IA</a></li>
+                <li><a href="#casos-reales">Casos Reales MTY</a></li>
+                <li><a href="#viktor-terminal">Probar Agente B2B</a></li>
+            </ul>
+
+            <div style="display:flex; gap:10px; align-items:center;">
+                <a href="/clinica-coba/" class="btn btn-titanium btn-sm">
+                    🦷 Demo Clínica Cobá
+                </a>
+                <a href="/doctor" class="btn btn-titanium btn-sm" style="border-color: rgba(6,182,212,0.5); color: #38BDF8;">
+                    🩺 Portal Médico
+                </a>
+                <a href="#viktor-terminal" class="btn btn-gold btn-sm">
+                    ⚡ Solicitar Intervención
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. HERO + COMERCIAL OFICIAL DE AUTOMATIC ("AUTOMATIZA O DESAPARECE") -->
+    <section class="hero" id="comercial">
+        <div class="container">
+            <div class="hero-top">
+                <span class="authority-tag">
+                    ⚡ INFRAESTRUCTURA DE DOMINIO COMERCIAL EN MONTERREY
+                </span>
+                <h1 class="hero-h1">
+                    No Vendemos Páginas Web.<br>
+                    Instalamos <span class="gold-gradient">Máquinas de Guerra Comercial.</span>
+                </h1>
+                <p class="hero-lead">
+                    Mientras tu competencia en Monterrey tarda <strong>4 horas</strong> en contestar un WhatsApp, la arquitectura de <strong>AUTOMATIC</strong> captura al prospecto, lo registra en tu CRM y despliega un <strong>Agente de Voz con Inteligencia Artificial</strong> que le llama a su celular en <strong>8 segundos</strong> y agenda la venta.
+                </p>
+                <div class="hero-ctas">
+                    <button type="button" class="btn btn-gold" id="hero-play-commercial-btn" onclick="startOfficialCommercial()">
+                        ▶ REPRODUCIR COMERCIAL OFICIAL (CON AUDIO)
+                    </button>
+                    <a href="#casos-reales" class="btn btn-titanium">
+                        📂 Ver Caso Real Desplegado en Monterrey →
+                    </a>
+                </div>
+            </div>
+
+            <!-- CINE / REPRODUCTOR DEL COMERCIAL OFICIAL DE AUTOMATIC -->
+            <div class="commercial-theatre" id="commercial-theatre">
+                <div class="theatre-topbar">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#EF4444; font-weight:800;">● REC</span>
+                        <span>SPOT OFICIAL AUTOMATIC // "AUTOMATIZA O DESAPARECE" (1080p NEURAL AUDIO)</span>
+                    </div>
+                    <div id="theatre-timecode" style="color:var(--gold-400);">00:00 / 00:38</div>
+                </div>
+
+                <div class="theatre-viewport" id="theatre-viewport">
+                    <img src="images/hero_visual.png" alt="Escena Comercial AUTOMATIC" class="commercial-bg-slide" id="commercial-bg-slide">
+                    <canvas id="commercial-canvas"></canvas>
+
+                    <div class="commercial-hud-overlay">
+                        <span class="scene-tag" id="commercial-scene-tag">ACTO I // LA REALIDAD CRUDA EN MONTERREY</span>
+                        <h2 class="commercial-kinetic-title" id="commercial-kinetic-title">
+                            EL CLIENTE QUE NO ATIENDES EN 5 MINUTOS,<br><span class="gold-gradient">YA ES DE TU COMPETENCIA.</span>
+                        </h2>
+                        <div class="commercial-subtitle-box" id="commercial-subtitle-box">
+                            Haz clic en <strong>"▶ INICIAR COMERCIAL"</strong> para reproducir la locución neural ejecutiva y la banda sonora cinematográfica de AUTOMATIC.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theatre-controls">
+                    <button type="button" class="btn btn-gold btn-sm" id="play-toggle-btn" onclick="toggleCommercialPlayback()">
+                        ▶ INICIAR COMERCIAL
+                    </button>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="commercial-progress-fill"></div>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button type="button" class="btn btn-titanium btn-sm" onclick="jumpToScene(0)">Acto I</button>
+                        <button type="button" class="btn btn-titanium btn-sm" onclick="jumpToScene(1)">Acto II</button>
+                        <button type="button" class="btn btn-titanium btn-sm" onclick="jumpToScene(2)">Acto III</button>
+                        <button type="button" class="btn btn-titanium btn-sm" onclick="jumpToScene(3)">Acto IV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. CALCULADORA DE FUGA DE CAPITAL EN MONTERREY -->
+    <section class="section" id="fuga-capital" style="padding-top: 30px;">
+        <div class="container">
+            <div class="section-header">
+                <span class="authority-tag">📉 AUDITORÍA FINANCIERA EN TIEMPO REAL</span>
+                <h2 class="section-title">¿Cuánto Dinero Está <span class="gold-gradient">Quemando Tu Negocio</span> Por Responder Tarde?</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem;">
+                    En una ciudad tan competitiva como Monterrey, responder 2 horas después reduce la conversión en un 78%. Mueve los controles y descubre cuánto capital estás dejando en la mesa cada mes.
+                </p>
+            </div>
+
+            <div class="roi-grid">
+                <div class="monolith-card">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>Prospectos / Mensajes Mensuales (WhatsApp, FB, Web)</span>
+                            <span class="slider-val" id="val-leads">180 prospectos</span>
+                        </div>
+                        <input type="range" id="slider-leads" min="30" max="1000" step="10" value="180">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>Ticket Promedio por Cliente Cerrado (MXN)</span>
+                            <span class="slider-val" id="val-ticket">$3,500 MXN</span>
+                        </div>
+                        <input type="range" id="slider-ticket" min="800" max="25000" step="100" value="3500">
+                    </div>
+
+                    <div class="slider-group" style="margin-bottom:0;">
+                        <div class="slider-header">
+                            <span>Tiempo Promedio Actual en Llamar al Prospecto</span>
+                            <span class="slider-val" id="val-delay">3 Horas</span>
+                        </div>
+                        <input type="range" id="slider-delay" min="1" max="24" step="1" value="3">
+                    </div>
+                </div>
+
+                <div class="monolith-card roi-result-box">
+                    <div>
+                        <span style="font-family:var(--font-mono); font-size:0.78rem; color:#FCA5A5; text-transform:uppercase; letter-spacing:0.1em;">
+                            ⚠️ PÉRDIDA MENSUAL ESTIMADA POR FRICCIÓN HUMANA:
+                        </span>
+                        <div class="leak-amount" id="leak-monthly">-$151,200 MXN / mes</div>
+                        <p style="font-size:0.9rem; color:var(--text-silver); margin-bottom:20px;">
+                            Equivale a <strong id="leak-yearly" style="color:#fff;">$1,814,400 MXN al año</strong> en clientes que pidieron informes y se enfriaron esperando respuesta.
+                        </p>
+                    </div>
+
+                    <div style="border-top:1px solid rgba(255,255,255,0.12); padding-top:18px;">
+                        <span style="font-family:var(--font-mono); font-size:0.76rem; color:#6EE7B7; text-transform:uppercase; letter-spacing:0.1em;">
+                            ⚡ FACTURACIÓN RECUPERADA INSTALANDO AUTOMATIC (LLAMADA EN 8 SEG):
+                        </span>
+                        <div class="recovered-amount" id="recovered-monthly">+$113,400 MXN / mes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ARSENAL OPERATIVO DE AUTOMATIC (4 PILARES) -->
+    <section class="section" id="arsenal">
+        <div class="container">
+            <div class="section-header">
+                <span class="authority-tag">🛡️ ARQUITECTURA ANTIGRAVITY + N8N + RETELL AI</span>
+                <h2 class="section-title">El Arsenal Operativo de <span class="gold-gradient">AUTOMATIC</span></h2>
+                <p style="color: var(--text-muted);">
+                    Reemplazamos procesos manuales lentos y costosos por un ecosistema autónomo de grado militar.
+                </p>
+            </div>
+
+            <div class="arsenal-grid">
+                <div class="monolith-card arsenal-card">
+                    <span class="arsenal-num">MÓDULO 01 // FRONTEND</span>
+                    <h3>Ecosistemas Web de Alta Conversión</h3>
+                    <p>
+                        Diseñamos plataformas Dark Luxury con cotizadores interactivos, filtros por sucursal y sistemas de reserva en tiempo real que proyectan autoridad absoluta.
+                    </p>
+                </div>
+
+                <div class="monolith-card arsenal-card">
+                    <span class="arsenal-num">MÓDULO 02 // CEREBRO N8N</span>
+                    <h3>Orquestación Neural &amp; CRM</h3>
+                    <p>
+                        Cada formulario dispara webhooks instantáneos en n8n que validan datos, clasifican al prospecto y lo registran en Google Sheets, HubSpot o tu base de datos sin intervención humana.
+                    </p>
+                </div>
+
+                <div class="monolith-card arsenal-card">
+                    <span class="arsenal-num">MÓDULO 03 // VOZ IA</span>
+                    <h3>Agentes Telefónicos en Caliente</h3>
+                    <p>
+                        En menos de 10 segundos tras el registro, nuestro agente de voz con IA llama al cliente por su nombre, resuelve objeciones con pausas humanas y cierra la cita.
+                    </p>
+                </div>
+
+                <div class="monolith-card arsenal-card">
+                    <span class="arsenal-num">MÓDULO 04 // CIERRE 24/7</span>
+                    <h3>Confirmación Omnicanal WhatsApp</h3>
+                    <p>
+                        Envío inmediato de ubicación en Google Maps, recordatorios anti-inasistencia y seguimiento automatizado para que tu equipo solo reciba clientes listos para pagar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CASOS DE INTERVENCIÓN REAL EN MONTERREY (DEMO EN VIVO DE CLÍNICA DENTAL COBÁ) -->
+    <section class="section" id="casos-reales">
+        <div class="container">
+            <div class="section-header">
+                <span class="authority-tag">📂 EVIDENCIA EN VIVO // MONTERREY, NUEVO LEÓN</span>
+                <h2 class="section-title">Intervenciones Reales <span class="gold-gradient">Listas Para Operar</span></h2>
+                <p style="color: var(--text-muted);">
+                    No hablamos con teoría. Inspecciona y prueba en vivo la infraestructura completa que construimos para negocios reales de Monterrey.
+                </p>
+            </div>
+
+            <div class="cases-grid">
+                <div class="monolith-card">
+                    <img src="images/scene_dental_case.png" alt="Caso Clínica Dental Cobá Monterrey" class="case-preview-img">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <span class="arsenal-num" style="margin:0;">INTERVENCIÓN #01 // SALUD &amp; ODONTOLOGÍA MTY</span>
+                        <span style="font-family:var(--font-mono); font-size:0.78rem; color:#10B981;">● SISTEMA DESPLEGADO Y ACTIVO</span>
+                    </div>
+                    <h3 style="font-family:var(--font-display); font-size:1.6rem; margin-bottom:10px;">
+                        Clínica Dental Cobá (Monterrey Centro &amp; Guadalupe Centro)
+                    </h3>
+                    <p style="color:var(--text-silver); font-size:0.95rem; margin-bottom:18px;">
+                        <strong>Problema detectado:</strong> Su dominio anterior (<code>clinicadentalcoba.com</code>) estaba caído (<code>DNS NXDOMAIN</code>) y sus 2 sucursales sufrían saturación telefónica al agendar promociones de Brackets ($1,999 MXN) y Zirconia.<br>
+                        <strong>Solución AUTOMATIC:</strong> Ecosistema Web Dark Luxury + Cotizador de Promociones + Booking por Sucursal + CRM en vivo + Agente de Voz IA <em>"Sofía"</em> que llama y confirma al paciente en 10 segundos.
+                    </p>
+                    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                        <a href="/clinica-coba" class="btn btn-gold">
+                            🦷 ABRIR DEMO EN VIVO DE CLÍNICA DENTAL COBÁ →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="monolith-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                    <div>
+                        <img src="images/scene_command.png" alt="Arquitectura n8n + Retell AI" class="case-preview-img">
+                        <span class="arsenal-num">ESPECIFICACIONES DE ENTREGA</span>
+                        <h3 style="font-family:var(--font-display); font-size:1.35rem; margin-bottom:10px;">
+                            Despliegue Llave en Mano en 72 Horas
+                        </h3>
+                        <ul style="list-style:none; color:var(--text-silver); font-size:0.9rem; display:flex; flex-direction:column; gap:10px;">
+                            <li>⚡ <strong>Auditoría de Fuga de Leads</strong> en tus canales actuales</li>
+                            <li>⚡ <strong>Diseño y Publicación de Plataforma Web</strong> con Booking integrado</li>
+                            <li>⚡ <strong>Conexión de Flujo n8n + CRM</strong> (Google Sheets / HubSpot)</li>
+                            <li>⚡ <strong>Entrenamiento de Agente de Voz IA</strong> con el conocimiento exacto de tus precios y sucursales</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <a href="#viktor-terminal" class="btn btn-titanium" style="width:100%;">
+                            Agendar Auditoría con AUTOMATIC →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TERMINAL EN VIVO DE AGENTE DE VOZ B2B ("VALERIA — DIRECTORA COMERCIAL IA DE AUTOMATIC") -->
+    <section class="section" id="viktor-terminal">
+        <div class="container">
+            <div class="section-header">
+                <span class="authority-tag">🎙️ VOZ HUMANA NEURAL EN TIEMPO REAL</span>
+                <h2 class="section-title">Habla con <span class="gold-gradient">VALERIA</span>, Nuestra Directora Comercial IA</h2>
+                <p style="color: var(--text-muted);">
+                    Escucha cómo una voz femenina 100% natural, cálida y ejecutiva atiende a tus clientes o prospecta dueños de negocios en Monterrey en menos de 8 segundos.
+                </p>
+            </div>
+
+            <div class="b2b-terminal-grid">
+                <div class="monolith-card">
+                    <h3 style="font-family:var(--font-display); font-size:1.35rem; margin-bottom:18px;">
+                        Recibir Llamada de Demostración de Valeria (Voz Mujer Natural)
+                    </h3>
+                    <form id="automatic-b2b-form">
+                        <label style="font-size:0.78rem; font-family:var(--font-mono); color:var(--gold-400);">TU NOMBRE *</label>
+                        <input type="text" id="b2b-nombre" class="form-input" placeholder="Ej. Mauricio Elizondo" required>
+
+                        <label style="font-size:0.78rem; font-family:var(--font-mono); color:var(--gold-400);">NOMBRE DE TU EMPRESA O CLÍNICA EN MTY *</label>
+                        <input type="text" id="b2b-empresa" class="form-input" placeholder="Ej. Clínica Dental Cobá" required>
+
+                        <label style="font-size:0.78rem; font-family:var(--font-mono); color:var(--gold-400);">TELÉFONO / WHATSAPP DIRECTO *</label>
+                        <input type="tel" id="b2b-telefono" class="form-input" placeholder="+52 81 1848 3941" required>
+
+                        <label style="font-size:0.78rem; font-family:var(--font-mono); color:var(--gold-400);">ELIGE EL TIMBRE DE VOZ FEMENINA NATURAL *</label>
+                        <select id="b2b-voice-select" class="form-select">
+                            <option value="dalia">🇲🇽 Valeria — Voz Mujer Mexicana Natural (Dalia Neural HD)</option>
+                            <option value="salome">🇨🇴 Camila — Voz Mujer Latina Cálida y Cercana (Salomé Neural HD)</option>
+                            <option value="ava">✨ Ava — Voz Mujer Ultra-Expresiva con Respiración (DragonHD)</option>
+                            <option value="paloma">🇺🇸 Paloma — Voz Mujer Ejecutiva Suave (Paloma Neural HD)</option>
+                        </select>
+
+                        <label style="font-size:0.78rem; font-family:var(--font-mono); color:var(--gold-400);">PRINCIPAL CUELLO DE BOTELLA OPERATIVO *</label>
+                        <select id="b2b-dolor" class="form-select">
+                            <option value="su página web está caída y se les saturan los mensajes de promoción">No tenemos página web activa o se saturan los mensajes</option>
+                            <option value="reciben muchos mensajes por promociones y tardan en contestar">Recibimos muchos mensajes por promociones y tardamos en contestar</option>
+                            <option value="buscan una asistente de voz con inteligencia artificial que agende citas">Queremos una Asistente de Voz IA que agende y confirme citas 24/7</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-gold" style="width:100%;">
+                            📞 ESCUCHAR LLAMADA DE VALERIA (VOZ MUJER REAL) AHORA
+                        </button>
+                    </form>
+                </div>
+
+                <div class="viktor-console">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:12px;">
+                        <div>
+                            <strong style="color:var(--gold-400); display:block;">🎧 VALERIA // DIRECTORA COMERCIAL IA (VOZ MUJER HD)</strong>
+                            <span style="font-size:0.75rem; color:var(--text-muted);" id="viktor-status">LISTA PARA HABLAR EN TIEMPO REAL...</span>
+                        </div>
+                        <span style="color:#10B981; font-size:0.78rem;">● NEURAL VOICE HD</span>
+                    </div>
+
+                    <div class="viktor-log" id="viktor-log">
+                        <div class="viktor-msg ai">
+                            [SISTEMA AUTOMATIC]: Presiona "⚡ Simular Llamada de Valeria" abajo o envía el formulario para escuchar la voz femenina natural saludando y cualificando en tiempo real.
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn btn-gold btn-sm" onclick="simulateViktorDemo()">
+                            ⚡ Simular Llamada de Valeria
+                        </button>
+                        <button type="button" class="btn btn-titanium btn-sm" onclick="viktorUserReply('Oye Valeria, nos llegan más de cincuenta mensajes diarios por las promociones y recepción no se da abasto.')">
+                            🗣️ "Recepción no se da abasto"
+                        </button>
+                        <button type="button" class="btn btn-titanium btn-sm" onclick="viktorUserReply('Me encanta cómo te escuchas Valeria, quiero instalar esto en mi negocio esta semana.')">
+                            🗣️ "Quiero instalarlo esta semana"
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="color:#fff; font-family:var(--font-display); font-weight:800; letter-spacing:0.15em; margin-bottom:8px;">
+                AUTOMATIC // MONTERREY, NUEVO LEÓN, MÉXICO
+            </p>
+            <p>
+                Ingeniería de Automatización Comercial, Ecosistemas Web de Alta Conversión y Agentes de Voz con Inteligencia Artificial.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

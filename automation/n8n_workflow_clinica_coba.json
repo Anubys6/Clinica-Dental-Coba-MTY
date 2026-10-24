@@ -1,0 +1,171 @@
+{
+  "name": "Clínica Dental Cobá Monterrey — Captación Web + Booking CRM + Agente de Voz Retell AI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "clinica-coba-leads",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bd91de57-b164-4a51-a24c-752e84e70d54",
+      "name": "Webhook Landing Cobá MTY",
+      "webhookId": "b03eed95-d610-4c4f-89dc-b25ce7e9afd6"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "REEMPLAZAR_CON_ID_GOOGLE_SHEET_CLINICA_COBA",
+          "mode": "list",
+          "cachedResultName": "CRM_Pacientes_Clinica_Dental_Coba_MTY"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Pacientes_y_Citas"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha_Registro": "={{ $json.body.timestamp || $now }}",
+            "Nombre": "={{ $json.body.nombre }}",
+            "Telefono": "={{ $json.body.telefono }}",
+            "Email": "={{ $json.body.email }}",
+            "Sucursal": "={{ $json.body.sucursal }}",
+            "Tratamiento": "={{ $json.body.tratamiento }}",
+            "Fecha_Cita": "={{ $json.body.fecha_cita }}",
+            "Hora_Cita": "={{ $json.body.hora_cita }}",
+            "Mensaje": "={{ $json.body.mensaje }}",
+            "Medio": "={{ $json.body.source }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "Fecha_Registro", "displayName": "Fecha_Registro", "type": "string", "display": true },
+            { "id": "Nombre", "displayName": "Nombre", "type": "string", "display": true },
+            { "id": "Telefono", "displayName": "Telefono", "type": "string", "display": true },
+            { "id": "Email", "displayName": "Email", "type": "string", "display": true },
+            { "id": "Sucursal", "displayName": "Sucursal", "type": "string", "display": true },
+            { "id": "Tratamiento", "displayName": "Tratamiento", "type": "string", "display": true },
+            { "id": "Fecha_Cita", "displayName": "Fecha_Cita", "type": "string", "display": true },
+            { "id": "Hora_Cita", "displayName": "Hora_Cita", "type": "string", "display": true },
+            { "id": "Mensaje", "displayName": "Mensaje", "type": "string", "display": true },
+            { "id": "Medio", "displayName": "Medio", "type": "string", "display": true }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        260,
+        0
+      ],
+      "id": "c26af2bd-3b9c-4821-8635-c24dc34e36e2",
+      "name": "Guardar Paciente en Google Sheets CRM"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer TU_API_KEY_DE_RETELL_AI"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from_number\": \"+528118483941\",\n  \"to_number\": \"{{ $json.Telefono }}\",\n  \"call_type\": \"phone_call\",\n  \"retell_llm_dynamic_variables\": {\n    \"nombre\": \"{{ $json.Nombre }}\",\n    \"sucursal\": \"{{ $json.Sucursal }}\",\n    \"tratamiento\": \"{{ $json.Tratamiento }}\",\n    \"fecha_cita\": \"{{ $json.Fecha_Cita }}\",\n    \"hora_cita\": \"{{ $json.Hora_Cita }}\",\n    \"mensaje\": \"{{ $json.Mensaje }}\"\n  },\n  \"override_agent_id\": \"agent_clinica_dental_coba_mty\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        520,
+        -80
+      ],
+      "id": "51e8f0e0-aef9-4570-b46b-d28750b5de28",
+      "name": "Llamada En Caliente Retell AI (Agente Sofía)"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.whatsapp.com/send-confirmation-webhook-placeholder",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"telefono_paciente\": \"{{ $json.Telefono }}\",\n  \"mensaje_whatsapp\": \"🦷 ¡Hola {{ $json.Nombre }}! Tu pre-reserva en Clínica Dental Cobá ({{ $json.Sucursal }}) para {{ $json.Tratamiento }} el día {{ $json.Fecha_Cita }} a las {{ $json.Hora_Cita }} ha sido registrada. Nuestra asistente Sofía te está llamando en este momento para confirmar tu lugar.\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        520,
+        100
+      ],
+      "id": "88a1f0e0-aef9-4570-b46b-d28750b5de99",
+      "name": "Notificación Simultánea WhatsApp"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook Landing Cobá MTY": {
+      "main": [
+        [
+          {
+            "node": "Guardar Paciente en Google Sheets CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar Paciente en Google Sheets CRM": {
+      "main": [
+        [
+          {
+            "node": "Llamada En Caliente Retell AI (Agente Sofía)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notificación Simultánea WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  }
+}
